@@ -58,25 +58,25 @@ use SoapFault;
 class Client implements LoggerAwareInterface
 {
     /** @var LoggerInterface */
-    private $logger;
+    protected $logger;
 
     /** @var Transport */
-    private $transport;
+    protected $transport;
 
     /** @var string */
-    private $wsdl;
+    protected $wsdl;
 
     /** @var string */
-    private $certPath;
+    protected $certPath;
 
     /** @var string */
-    private $certPassword;
+    protected $certPassword;
 
     /** @var string */
-    private $user;
+    protected $user;
 
     /** @var string */
-    private $password;
+    protected $password;
 
     public function __construct(
         string $wsdl,
