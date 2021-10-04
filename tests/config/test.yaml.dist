@@ -1,0 +1,7 @@
+config:
+  wsdl: 'wsdl'
+  cert: 'converted_cert'
+  cert_pass: 'converted_cert_password'
+  user: 'user'
+  pass: 'user_password'
+
