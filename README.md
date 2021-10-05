@@ -29,7 +29,9 @@
 * use this certificate with library
 
 ### API Errors
-* when request params are not proper API returns ambiguous error
+* when request params are not proper or there is a technical problem on vendor side API returns ambiguous error.  
+To find out the reason vendor needs to be contacted.
+
     ```
     #OriginatorURI: "Not Authenticated"
     #ResultCode: "TECH-001"
