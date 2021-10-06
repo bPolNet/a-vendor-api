@@ -14,6 +14,8 @@
 | GetPurchaseOrder      | getPurchaseOrder()                                                            | X           |
 | CancelPurchaseOrder   | cancelPurchaseOrder(string $id)                                               | X           |
 | ConfirmPurchaseOrder  | confirmPurchaseOrder(string $id, DateTime $deliveryDate)                      | X           |
+| GetOrderStatus        | getOrderStatus(string $id)                                                    | X           |
+| GetOrderStatusDetails | getOrderStatusDetails(string $id)                                             | X           |
 | SubmitShipmentStatus  | submitShipmentStatus(array $shipmentStatus)                                   | X           |
 | GetPackingSlip        | getPackingSlip()                                                              | X           |
 | SubmitInvoice         | submitInvoice(PurchaseInvoiceType $invoice)                                   | X           |
