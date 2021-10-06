@@ -23,6 +23,10 @@ use BPolNet\A\VendorApi\Lib\GetInvoiceStatusRequestBodyType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusRequestMessageType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusRequestPayloadType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusResponseMessageType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusDetailsRequestBodyType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusDetailsRequestMessageType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusDetailsRequestPayloadType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusDetailsResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetOrderStatusRequestBodyType;
 use BPolNet\A\VendorApi\Lib\GetOrderStatusRequestMessageType;
 use BPolNet\A\VendorApi\Lib\GetOrderStatusRequestPayloadType;
@@ -209,6 +213,20 @@ class Client implements LoggerAwareInterface
         );
 
         return$this->sendSoap('GetOrderStatus', $request);
+    }
+
+    /**
+     * @throws TransportException
+     */
+    public function getOrderStatusDetails(string $id): GetOrderStatusDetailsResponseMessageType
+    {
+        $request = new GetOrderStatusDetailsRequestMessageType(
+            new GetOrderStatusDetailsRequestPayloadType(
+                new GetOrderStatusDetailsRequestBodyType($id)
+            )
+        );
+
+        return$this->sendSoap('GetOrderStatusDetails', $request);
     }
 
     /**
