@@ -23,6 +23,10 @@ use BPolNet\A\VendorApi\Lib\GetInvoiceStatusRequestBodyType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusRequestMessageType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusRequestPayloadType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusResponseMessageType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusRequestBodyType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusRequestMessageType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusRequestPayloadType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetPackingSlipRequestBodyType;
 use BPolNet\A\VendorApi\Lib\GetPackingSlipRequestMessageType;
 use BPolNet\A\VendorApi\Lib\GetPackingSlipRequestPayloadType;
@@ -33,6 +37,7 @@ use BPolNet\A\VendorApi\Lib\GetPurchaseOrderResponseMessageType;
 use BPolNet\A\VendorApi\Lib\ProductPrice;
 use BPolNet\A\VendorApi\Lib\ProductStock;
 use BPolNet\A\VendorApi\Lib\PurchaseInvoiceType;
+use BPolNet\A\VendorApi\Lib\RequestList;
 use BPolNet\A\VendorApi\Lib\ShipmentStatus;
 use BPolNet\A\VendorApi\Lib\SubmitInvoiceRequestBodyType;
 use BPolNet\A\VendorApi\Lib\SubmitInvoiceRequestMessageType;
@@ -188,6 +193,22 @@ class Client implements LoggerAwareInterface
         );
 
         return$this->sendSoap('CancelPurchaseOrder', $request);
+    }
+
+    /**
+     * @throws TransportException
+     */
+    public function getOrderStatus(string $id): GetOrderStatusResponseMessageType
+    {
+        $rl = new RequestList($id);
+
+        $request = new GetOrderStatusRequestMessageType(
+            new GetOrderStatusRequestPayloadType(
+                (new GetOrderStatusRequestBodyType())->setRequestList($rl)
+            )
+        );
+
+        return$this->sendSoap('GetOrderStatus', $request);
     }
 
     /**

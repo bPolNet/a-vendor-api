@@ -10,6 +10,7 @@ use BPolNet\A\VendorApi\Lib\ConfirmPurchaseOrderResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetCategoriesResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetCategoryParametersResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetInvoiceStatusResponseMessageType;
+use BPolNet\A\VendorApi\Lib\GetOrderStatusResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetPackingSlipResponseMessageType;
 use BPolNet\A\VendorApi\Lib\GetPurchaseOrderResponseMessageType;
 use BPolNet\A\VendorApi\Lib\ProductPrice;
@@ -205,6 +206,15 @@ class ClientTest extends TestCase
             '[!] Packing Slip reference incorrect or missing',
             $response->getResult()->getAdditionalMessages()
         );
+    }
+
+    public function testGetOrderStatus(): void
+    {
+        $response = $this->client->getOrderStatus('not-existing-id');
+
+        $this->assertInstanceOf(GetOrderStatusResponseMessageType::class, $response);
+        $this->assertEquals('VAP-404', $response->getResult()->getResultCode());
+        $this->assertEquals('No resources found for given request', $response->getResult()->getResultMessage());
     }
 
     protected function setUp(): void
