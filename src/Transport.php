@@ -31,10 +31,16 @@ class Transport extends SoapClient implements LoggerAwareInterface
     /**
      * @inheritdoc
      * @return string
+     * @throws TransportException
      */
     public function __doRequest($request, $location, $action, $version, $oneWay = 0): string
     {
         $response = parent::__doRequest($request, $location, $action, $version, $oneWay);
+
+        if (null === $response) {
+            throw new TransportException('Critical API error, no response just NULL !!!');
+        }
+
         if (null !== $this->logger) {
             $this->logger->info(sprintf(
                 ">>>>>>>>\n%s\nLocation: %s\nAction: %s\nVersion: %s\n<<<<<<<<\n%s\n--------\n%s",
