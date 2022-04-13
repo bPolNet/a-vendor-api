@@ -91,4 +91,11 @@ class ProductPrice
       return $this;
     }
 
+    /**
+     * @return float|null
+     */
+    public function getPrice()
+    {
+        return $this->Price;
+    }
 }
