@@ -290,7 +290,11 @@ class Client implements LoggerAwareInterface
     public function setLogger(LoggerInterface $logger): void
     {
         $this->logger = $logger;
-        $this->getTransport()->setLogger($logger);
+        try {
+            $this->getTransport()->setLogger($logger);
+        } catch (TransportException $exception) {
+            $this->logger->error(sprintf("%s: %s", self::class, $exception->getMessage()));
+        }
     }
 
     /**
